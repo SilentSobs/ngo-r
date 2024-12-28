@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>noVNC Example</title>
+  <!-- Include noVNC scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/novnc-core@1.4.0/core/rfb.js"></script>
+  <style>
+    #noVNC_container {
+      width: 800px;
+      height: 600px;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>noVNC Web Client</h1>
+  <div id="noVNC_container"></div>
+
+  <script>
+    // Configuration
+    const host = 'YOUR_WEBSOCKET_PROXY_HOST'; //
+    const port = 6080; 
+    const password = 'YOUR_VNC_PASSWORD'; //
+
+    // Establish the connection URL
+    const url = `ws://${host}:${port}/`;
+
+    // Create the RFB (Remote Framebuffer) object
+    const rfb = new RFB(document.getElementById('noVNC_container'), url, {
+      credentials: { password: password },
+      shared: true,
+      repeaterID: '',
+      wsProtocols: ['binary', 'base64']
+    });
+
+    // Handle connection events
+    rfb.addEventListener('connect', () => {
+      console.log('Connected to VNC server');
+    });
+
+    rfb.addEventListener('disconnect', (e) => {
+      console.log('Disconnected from VNC server:', e.detail.clean);
+    });
+
+    rfb.addEventListener('credentialsrequired', () => {
+      const pwd = prompt("Enter VNC Password:");
+      rfb.sendCredentials({ password: pwd });
+    });
+  </script>
+</body>
+</html>

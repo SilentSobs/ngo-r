@@ -1,0 +1,53 @@
+.client-carousel {
+    text-align: center;
+  }
+  
+  .client-carousel .item {
+    padding: 20px;
+  }
+  
+  .custom-nav-arrow {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .custom-nav-arrow:hover {
+    color: #000;
+  }
+  
+  /* Center the navigation arrows and adjust their appearance */
+  .owl-nav {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+  }
+  
+  .owl-nav .owl-prev, .owl-nav .owl-next {
+    position: absolute;
+    top: 50%;
+    background: none;
+    border: none;
+    outline: none;
+  }
+  
+  .owl-nav .owl-prev {
+    left: -20px;
+  }
+  
+  .owl-nav .owl-next {
+    right: -20px;
+  }
+  
+  /* Adjust the image sizing */
+  .client-carousel .item img {
+    width: auto;
+    height: 100px; /* Adjust the height based on your needs */
+    display: block;
+    margin: 0 auto;
+  }
+  
